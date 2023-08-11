@@ -1,6 +1,7 @@
 package me.whiteship.demospring51;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.ApplicationContext;
@@ -17,6 +18,9 @@ public class AppRunner implements ApplicationRunner {
 
     @Autowired
     BookRepository bookRepository;
+
+    @Value("${app.name}")
+    String appName;
 
     /* SingleTone and ProtoType Bean 테스트
     @Override
@@ -43,5 +47,7 @@ public class AppRunner implements ApplicationRunner {
         Environment environment = ctx.getEnvironment();
         System.out.println(Arrays.toString(environment.getActiveProfiles()));
         System.out.println(Arrays.toString(environment.getDefaultProfiles()));
+        System.out.println(environment.getProperty("app.name"));
+        System.out.println(appName);
     }
 }
