@@ -27,14 +27,14 @@ public class MyEventHandler { // Spring 4.2 이후
         System.out.println("이벤트 받았다. 데이터는 " + event.getData());
     }
 
-    @EventListener
+//    @EventListener
     @Async
     public void handler(ContextRefreshedEvent event) {
         System.out.println(Thread.currentThread().toString());
         System.out.println("ContextRefreshedEvent");
     }
 
-    @EventListener
+//    @EventListener
     @Async
     public void handler(ContextClosedEvent event) {
         System.out.println(Thread.currentThread().toString());

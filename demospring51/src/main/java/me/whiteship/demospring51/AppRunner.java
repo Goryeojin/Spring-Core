@@ -8,8 +8,12 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.MessageSource;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Locale;
 
@@ -17,13 +21,17 @@ import java.util.Locale;
 public class AppRunner implements ApplicationRunner {
 
     @Autowired
-    ApplicationContext ctx;
+    ApplicationContext resourceLoader;
 
 //    @Autowired
 //    MessageSource messageSource; // ApplicationContext extends MessageSource
 
-    @Autowired
-    ApplicationEventPublisher publisher; // ApplicationContext extends ApplicationEventPublisher
+//    @Autowired
+//    ApplicationEventPublisher publisher; // ApplicationContext extends ApplicationEventPublisher
+
+//    @Autowired
+//    ResourceLoader resourceLoader; // ApplicationContext extends ResourcePatternResolver;
+
 //    @Autowired
 //    BookRepository bookRepository;
 //
@@ -69,6 +77,15 @@ public class AppRunner implements ApplicationRunner {
         }
          */
 
-        publisher.publishEvent(new MyEvent(this, 100));
+//        publisher.publishEvent(new MyEvent(this, 100));
+
+        System.out.println(resourceLoader.getClass());
+
+        Resource resource = resourceLoader.getResource("classpath:test.txt");
+        System.out.println(resource.getClass());
+
+        System.out.println(resource.exists());
+        System.out.println(resource.getDescription());
+        System.out.println(Files.readString(Path.of(resource.getURI())));
     }
 }

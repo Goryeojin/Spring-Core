@@ -10,14 +10,14 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
 //@PropertySource("classpath:/app.properties")
-@EnableAsync
+//@EnableAsync
 public class Demospring51Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Demospring51Application.class, args);
     }
 
-    @Bean
+//    @Bean
     public MessageSource messageSource() {
         var messageSource = new ReloadableResourceBundleMessageSource();
         messageSource.setBasename("classpath:/messages");
