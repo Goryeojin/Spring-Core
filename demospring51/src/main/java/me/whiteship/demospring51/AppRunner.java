@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
 
 @Component
 public class AppRunner implements ApplicationRunner {
@@ -12,6 +15,10 @@ public class AppRunner implements ApplicationRunner {
     @Autowired
     ApplicationContext ctx;
 
+    @Autowired
+    BookRepository bookRepository;
+
+    /* SingleTone and ProtoType Bean 테스트
     @Override
     public void run(ApplicationArguments args) throws Exception {
         System.out.println("proto");
@@ -29,5 +36,12 @@ public class AppRunner implements ApplicationRunner {
         System.out.println(ctx.getBean(Single.class).getProto());
         System.out.println(ctx.getBean(Single.class).getProto());
         System.out.println(ctx.getBean(Single.class).getProto());
+    }
+     */
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
+        Environment environment = ctx.getEnvironment();
+        System.out.println(Arrays.toString(environment.getActiveProfiles()));
+        System.out.println(Arrays.toString(environment.getDefaultProfiles()));
     }
 }
