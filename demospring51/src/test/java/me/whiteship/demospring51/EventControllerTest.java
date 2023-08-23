@@ -1,5 +1,8 @@
 package me.whiteship.demospring51;
 
+import me.whiteship.demospring51.databinding.EventController;
+import me.whiteship.demospring51.databinding.EventConverter;
+import me.whiteship.demospring51.databinding.EventFormatter;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -9,7 +12,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest
+@WebMvcTest({EventConverter.StringToEventConverter.class, EventController.class})
 public class EventControllerTest {
 
     @Autowired
